@@ -178,6 +178,7 @@ main > img {
 }
 
 .title-line {
+  color: #fff;
   display: flex;
   justify-content: start;
   align-items: center;
