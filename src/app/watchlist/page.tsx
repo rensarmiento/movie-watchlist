@@ -1,5 +1,5 @@
 import MoviesList from '@/app/components/movies/MoviesList'
-import {DetailedMovie, imdbID, imdbList} from '@/app/lib/definitions'
+import { DetailedMovie } from '@/app/lib/definitions'
 import Link from 'next/link'
 
 export default async function WatchlistPage({searchParams} : {
@@ -19,7 +19,7 @@ export default async function WatchlistPage({searchParams} : {
       <Link
         href='/search'
       >
-        Let's add some movies!
+        Lets add some movies!
       </Link>
     </main>
   )}

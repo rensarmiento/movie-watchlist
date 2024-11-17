@@ -1,5 +1,5 @@
 export const key: string = '68f52006';
-import { DetailedMovie, imdbList, imdbID } from "./definitions";
+import { DetailedMovie, imdbList } from "./definitions";
 
 // string example = `http://www.omdbapi.com/?apikey=68f52006&t=ender's+game`
 

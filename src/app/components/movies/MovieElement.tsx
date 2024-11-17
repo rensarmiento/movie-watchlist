@@ -100,14 +100,14 @@ export const MovieElement = ( {
                         list.find(id => id===imdbID) ? 
                         <button 
                             className='addBtn'
-                            onClick={() => {imdbID ? handleWatchlistButton(imdbID) : null}}
+                            onClick={() => (imdbID ? handleWatchlistButton(imdbID) : null)}
                         > 
                             <FaMinusCircle/> Remove
                         </button>
                         :
                         <button 
                         className='addBtn'
-                        onClick={() => {imdbID ? handleWatchlistButton(imdbID) : null }}
+                        onClick={() => (imdbID ? handleWatchlistButton(imdbID) : null )}
                         > 
                             <FaPlusCircle/> Watchlist
                         </button>

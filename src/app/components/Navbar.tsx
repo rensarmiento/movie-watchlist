@@ -2,14 +2,13 @@
 
 import Link from 'next/link'
 import { useWatchlistContext } from '../providers';
-import { useSearchParams, usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 
 function Navbar() {
   const { list } = useWatchlistContext();
   // const searchParams = useSearchParams();
   const pathname = usePathname();
-  const { replace } = useRouter();
   let headerTitles = null;
   const params = new URLSearchParams(list?.map(movieId => ['id', movieId]) || '')
 
