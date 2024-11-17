@@ -28,7 +28,7 @@ function SearchBar() {
             hidden
         > search
         </label>
-        <FaSearch />
+        <FaSearch className='search-icon' />
         <input
             type='text'
             placeholder='Star Wars'

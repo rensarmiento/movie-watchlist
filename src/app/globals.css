@@ -89,10 +89,20 @@ main > img {
   justify-items: start;
   height: 2.5rem;
   background: #2E2E2F;
-  color: grey;
+
+  ;
+  /* color: grey; */
   width: 50rem;
   border-radius: 6px;
   padding-left: 1em;
+}
+
+.search-icon {
+  color: #fff;
+}
+
+.searchbar > input {
+  color: #fff;
 }
 
 .searchbar > button, input {
@@ -120,13 +130,14 @@ main > img {
   width: 15%;
   border: transparent;
   border-radius: 0 5px 5px 0;
+  background-color: transparent;
   color: white;
+  background: #4B4B4B;
   cursor: pointer;
 }
 
 .movie-detail {
   color: white;
-  /* background-color: red; */
 }
 
 .detail-line {
@@ -185,7 +196,7 @@ main > img {
 }
 
 .title-line > h1 {
-  /* color: #fff; */
+  color: #fff;
   padding-right: .5em;
 }
 
@@ -214,17 +225,6 @@ main > img {
   font-weight: 800;
   text-decoration: underline;
 }
-
-/* .detail-line {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 1em;
-} */
-
-/* .detail-line > span {
-  margin: 0 1em;
-} */
 
 .main-content {
   display: grid;
