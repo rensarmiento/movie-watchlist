@@ -1,20 +1,22 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import Link from 'next/link'
 
 export default function Home() {
   return (
-    <div className='landingpage'>
-      <main>
+      <main className="landingpage">
         <Image
           src='/Icon.png'
-          height={200}
-          width={200}
+          height={90}
+          width={80}
           alt='film icon'
         />
+        <h1>Welcome to Movie Watchlist!</h1>
+        <Link
+          href={'search'}
+        >Start exploring!</Link>
         <footer className={styles.footer}>
-
         </footer>
       </main>
-    </div>
   );
 }

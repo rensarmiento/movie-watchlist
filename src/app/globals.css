@@ -54,21 +54,32 @@ a {
 } */
 
 .landingpage {
-  margin: auto;
-  padding: auto;
-}
-
-/* .landingpage > img {
-  margin: auto;
-} */
-
-main {
   display: flex;
-  margin: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  height: 50vh;
 }
 
-main > img {
-  margin: auto;
+.landingpage > img {
+  margin-bottom: .5rem;
+}
+.landingpage > h1 {
+  color: #2E2E2F;
+  margin-bottom: .5rem;
+}
+
+.landingpage > a {
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+
+}
+
+.landingpage > a:hover {
+  transform: scale(1.1);
+  transform-origin: center;
 }
 
 .searchbar {
