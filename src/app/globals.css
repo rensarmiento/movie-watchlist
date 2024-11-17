@@ -185,7 +185,7 @@ main > img {
   gap: .5em;
 }
 
-.title-line > h1 {
+.title-line > h1, p {
   color: #fff;
   padding-right: .5em;
 }
