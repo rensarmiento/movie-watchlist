@@ -20,7 +20,7 @@
 # production
 /build
 
-data.ts
+# data.ts
 
 # misc
 .DS_Store

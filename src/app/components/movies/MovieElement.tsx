@@ -69,6 +69,16 @@ export const MovieElement = ( {
 
     return (
         <>
+        {
+            Poster === 'N/A' ?
+            <Image
+                src={`${imageUrl}`}
+                width={200}
+                height={200}
+                style={imageStyle}
+                alt={`Reels replacement image`}
+            />
+            :
             <Image
                 src={`${imageUrl}`}
                 width={200}
@@ -76,6 +86,7 @@ export const MovieElement = ( {
                 style={imageStyle}
                 alt={`${Title} poster`}
             />
+        }
             <div className="movie-detail-data">
                 <div className='title-line'>
                     <h1>{Title}</h1> 
@@ -84,7 +95,7 @@ export const MovieElement = ( {
                 </div>
                 <div className='line-2'>
                     <p className='detail-line'>{Runtime === 'N/A' ? `Runtime: ${Runtime}` : Runtime}</p>
-                    <p className='detial-line'>{Genre === 'N/A' ? `Genre: ${Genre}` : Genre}</p>                     
+                    <p className='detail-line'>{Genre === 'N/A' ? `Genre: ${Genre}` : Genre}</p>                     
                     { 
                         list.find(id => id===imdbID) ? 
                         <button 
@@ -106,7 +117,6 @@ export const MovieElement = ( {
                     {showReadMore(Plot)}
                 </div>
             </div>
-            {/* { index < movieList.length-1 ? <hr/> : null } */}
         </>
     )
 }
