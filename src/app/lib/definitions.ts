@@ -1,8 +1,8 @@
 // This file contains the type definitions acquired from the API
 
-export interface movieId {
-    id : string
-}
+export type imdbID = string;
+
+export type imdbList = imdbID[]
 
 export interface DetailedMovie {
     Title: string
@@ -32,3 +32,5 @@ export interface DetailedMovie {
     Website: string
     Response: string
 }
+
+

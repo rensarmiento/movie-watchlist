@@ -1,7 +1,7 @@
 import MoviesList from '@/app/components/movies/MoviesList'
 //  this is where the movie list will go
 
-export default async function Page(props : {
+export default async function MovielistPage(props : {
   searchParams?: Promise<{
     title?:string;
   }>;

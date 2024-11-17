@@ -1,11 +1,12 @@
 'use client'
 import { createContext, useContext, useState } from 'react';
-import { movieId } from './lib/definitions';
+import { imdbID, imdbList } from './lib/definitions';
+
 
 // Define a type for the context state
 interface WatchlistContextType {
-    list: movieId[];  // An array of movie IDs (strings)
-    setWatchList: React.Dispatch<React.SetStateAction<movieId[]>>; // Function to update the watchlist
+    list: imdbID[];  // An array of movie IDs (strings)
+    setWatchList: React.Dispatch<React.SetStateAction<imdbList>>; // Function to update the watchlist
 }
 
 // Create context with an initial empty value
@@ -26,7 +27,7 @@ export const WatchlistProvider = ({
 }: {
     children: React.ReactNode;
 }) => {
-    const [watchlist, setWatchList] = useState<movieId[]>([]);  // Initialize as an array of movie IDs
+    const [watchlist, setWatchList] = useState<imdbList>([]);  // Initialize as an array of movie IDs
     
     return (
         <WatchlistContext.Provider value={{ list: watchlist, setWatchList }}>

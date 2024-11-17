@@ -1,65 +1,76 @@
 'use client'
+
 import { useState } from 'react'
 import Image from 'next/image'
-import { DetailedMovie } from '@/app/lib/definitions'
-import { FaStar } from "react-icons/fa";
+import { DetailedMovie, imdbID } from '@/app/lib/definitions'
+import { FaStar, FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import { useWatchlistContext } from '@/app/providers';
 
-
-export const MovieElement = ( {movie} : DetailedMovie ) => {
+export const MovieElement = ( { 
+    Genre,
+    imdbID,
+    imdbRating, 
+    Plot,
+    Poster,
+    Runtime,
+    Title,
+ } : Partial<DetailedMovie> ) => {
     const { list, setWatchList } = useWatchlistContext();
-     const [isExpanded, setIsExpanded ] = useState(false)
-     const toggleReadMore = () => {
+    const [isExpanded, setIsExpanded ] = useState(false)
+    const toggleReadMore = () => {
         setIsExpanded(!isExpanded)
      };
-     const { 
-        Genre,
-        imdbID,
-        imdbRating, 
-        Plot,
-        Poster,
-        Runtime,
-        Title
-     } = movie
-    const imageUrl = movie?.Poster === "N/A" ? '/Icon.png' : Poster
-    const imageStyle = {
+
+    
+    const imageUrl = Poster === "N/A" ? '/Icon.png' : Poster
+    const imageStyle = (Poster !== "N/A") ? 
+    {
         borderRadius: '5px',
         border: '1px solid #fff',
         display: 'block',
+    } : 
+    {
+        border: 'none',
     }
-    const handleWatchlistButton = (movieId) => {
-        if (list.find(id => (id === movieId))) {
+
+    // Watchlist Button function 
+    const handleWatchlistButton = (movieID: imdbID) => {
+        if (list.find(imdbId => (imdbId === movieID))) {
             return setWatchList(prevWatchlist => (
-                prevWatchlist.filter(id => id !== movieId)
+                prevWatchlist.filter(id => id !== movieID)
             ))
         } else {
             return setWatchList(prevWatchlist => {
-                return [...prevWatchlist, movieId]
+                return [...prevWatchlist, movieID]
             })
         }   
     }
-    
 
-    const showReadMore = (Plot: string) => {
-        if (Plot.length > 300) {
-            return (
-                <>
-                    {isExpanded ? <p className='plot'>{Plot}</p> : <p>{`${Plot.slice(0, 300)}...` }</p>}
-                    <button className='read-more' onClick={toggleReadMore}>{isExpanded ? `Read less` : 'Read more'}</button>
-                </>
-        )
-        } else if (Plot.length <= 300) {
-            // setIsExpanded(!isExpanded)
-            return (
-                <p className='plot'>{Plot}</p>
-            )
+    // Read More Button function
+    const showReadMore = (Plot: string | undefined) => {
+        if(Plot) {
+            if (Plot === 'N/A') {
+                return <p className='plot'>Plot: N/A</p>
+            } else {
+                if (Plot?.length > 300) {
+                    return (
+                        <>
+                            {isExpanded ? <p className='plot'>{Plot}</p> : <p>{`${Plot?.slice(0, 300)}...` }</p>}
+                            <button className='read-more' onClick={toggleReadMore}>{isExpanded ? `Read less` : 'Read more'}</button>
+                        </>
+                )
+            } else if (Plot?.length <= 300) {
+                return (
+                    <p className='plot'>{Plot}</p>
+                )
+            }
         }
-    }
+    }}
 
-    return movie ? (
+    return (
         <>
             <Image
-                src={imageUrl}
+                src={`${imageUrl}`}
                 width={200}
                 height={300}
                 style={imageStyle}
@@ -69,15 +80,27 @@ export const MovieElement = ( {movie} : DetailedMovie ) => {
                 <div className='title-line'>
                     <h1>{Title}</h1> 
                     <FaStar className='star-icon'/>
-                    <p>{imdbRating}</p>
+                    <p>{imdbRating === 'N/A' ? `Rating: ${imdbRating}` : imdbRating}</p>
                 </div>
-                <div>
-                    <p className='detail-line'><span>{Runtime}</span>{Genre}</p>   
-                    
+                <div className='line-2'>
+                    <p className='detail-line'>{Runtime === 'N/A' ? `Runtime: ${Runtime}` : Runtime}</p>
+                    <p className='detial-line'>{Genre === 'N/A' ? `Genre: ${Genre}` : Genre}</p>                     
+                    { 
+                        list.find(id => id===imdbID) ? 
                         <button 
                             className='addBtn'
-                            onClick={() => handleWatchlistButton(movie.imdbID)}
-                        >{list.find(id => id===movie.imdbID) ? 'Remove from watchlist' : 'Add to watchlist' }</button>
+                            onClick={() => {imdbID ? handleWatchlistButton(imdbID) : null}}
+                        > 
+                            <FaMinusCircle/> Remove
+                        </button>
+                        :
+                        <button 
+                        className='addBtn'
+                        onClick={() => {imdbID ? handleWatchlistButton(imdbID) : null }}
+                        > 
+                            <FaPlusCircle/> Watchlist
+                        </button>
+                    }
                 </div>
                 <div className='plot-container'>
                     {showReadMore(Plot)}
@@ -85,5 +108,5 @@ export const MovieElement = ( {movie} : DetailedMovie ) => {
             </div>
             {/* { index < movieList.length-1 ? <hr/> : null } */}
         </>
-    ) : null
+    )
 }

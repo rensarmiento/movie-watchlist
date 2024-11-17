@@ -140,7 +140,7 @@ main > img {
   width: 90%;
   display: grid;
   grid-template-rows: 1fr;
-  justify-items: center;
+  justify-items: start;
   margin: auto;
 }
 
@@ -150,10 +150,10 @@ main > img {
   /* margin-bottom: 2.5em; */
   display: grid;
   align-items: start;
-  justify-content: center;
+  justify-content: start;
   grid-template-columns: 1fr 3fr;
   gap: 1.5rem;
-  padding: 2em;
+  padding: 2rem;
 }
 
 /* .movie-container > hr {
@@ -190,16 +190,36 @@ main > img {
   color: gold;
 }
 
-.detail-line {
+.line-2 {
+  display: flex;
+  gap: 1rem;
+}
+
+.addBtn {
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  font-weight: 400;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: .25em;
+}
+
+.addBtn:hover {
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+/* .detail-line {
   display: flex;
   justify-content: start;
   align-items: center;
   gap: 1em;
-}
+} */
 
-.detail-line > span {
-  margin-right: .5em;
-}
+/* .detail-line > span {
+  margin: 0 1em;
+} */
 
 .main-content {
   display: grid;

@@ -28,8 +28,8 @@ export default function RootLayout(
   return (
     <html lang="en">
       <body>
-        <Nav/>
         <WatchlistProvider>
+          <Nav/>
           {children}
         </WatchlistProvider>
       </body>

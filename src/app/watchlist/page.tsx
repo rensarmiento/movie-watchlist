@@ -1,43 +1,25 @@
-'use client'
-import MoviesList from "../components/movies/MoviesList";
-import { useWatchlistContext } from "../providers"
-import { MovieElement } from '../components/movies/MovieElement' 
-import { useEffect } from 'react'
-import { getWatchlistMovieData } from "../lib/data";
-import { DetailedMovie } from "../lib/definitions";
+import MoviesList from '@/app/components/movies/MoviesList'
+import {DetailedMovie, imdbID, imdbList} from '@/app/lib/definitions'
+import Link from 'next/link'
 
-
-
-
-const page = () => {
-  useEffect(()=> {
-    const fetchMovieList = async() => {
-      try {
-        const movies = await getWatchlistMovieData(list)
-      } catch (err) {
-        return
-      }
-    }
-    fetchMovieList()
-  }, [])
-
-  const { list, setWatchList } = useWatchlistContext(); 
-
-  // const watchlistElements = Array.isArray(watchlist) ? watchlist?.map(movie => {
-  //   <div
-  //     key={movie.imdbID}
-  //     className="movie-container"
-  //   >
-  //     <MovieElement movie={movie}/>
-  //   </div>
-  // }) : null;
-
-  return (
-        <main>
-            <h1>My Watchlist</h1>
-            {/* {list ? watchlistElements : <h1>Your watchlist is empty.</h1>} */}
-        </main>
+export default async function WatchlistPage({searchParams} : {
+    searchParams: Promise<{ id: Partial<DetailedMovie>[] | undefined }>;
+}) {
+    const { id } = await searchParams
+  return id ? (
+    <main className='main-content'>
+        <h1>My Watchlist!</h1>
+        <MoviesList imdbList={id}/> 
+    </main>
   )
-}
-
-export default page
+  : (
+    <main className='main-content'>
+      <h1>My Watchlist!</h1>
+      <h3>Your watchlist is looking a little empty...</h3>
+      <Link
+        href='/search'
+      >
+        Let's add some movies!
+      </Link>
+    </main>
+  )}

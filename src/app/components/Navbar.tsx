@@ -1,11 +1,19 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { useWatchlistContext } from '../providers';
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
+
 
 function Navbar() {
+  const { list } = useWatchlistContext();
+  // const searchParams = useSearchParams();
   const pathname = usePathname();
+  const { replace } = useRouter();
   let headerTitles = null;
+  const params = new URLSearchParams(list?.map(movieId => ['id', movieId]) || '')
+
+
   if(pathname === '/watchlist') {
     headerTitles = (
       <>
@@ -21,7 +29,7 @@ function Navbar() {
       <>
         <h1>Find your film</h1>
         <Link
-          href='/watchlist'
+          href={`/watchlist?${params}`}
           >My Watchlist &#8594;
         </Link>
       </>

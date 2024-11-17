@@ -1,21 +1,47 @@
-import { fetchMovieList } from '@/app/lib/data'
+import { fetchMovieList, fetchDetailedMovieData } from '@/app/lib/data'
 import  { MovieElement } from './MovieElement';
 import { DetailedMovie } from '@/app/lib/definitions';
 
+
 export default async function MoviesList({
     title,
+    imdbList,
 }: {
-    title : string
+    title? : string,
+    imdbList? : Partial<DetailedMovie>[]
 }) {
-
-    const movieList: Array<DetailedMovie> | undefined = await fetchMovieList(title);
+    let movieList: Array<DetailedMovie> | undefined;
+    if (title) {
+        movieList = await fetchMovieList(title)
+    } else if(imdbList) {
+        movieList = await fetchDetailedMovieData(imdbList);
+    } else {
+        return null
+    }
     const movieElements = Array.isArray(movieList) ? movieList.map((movie:DetailedMovie) => {
+        const {
+            Genre,
+            imdbID,
+            imdbRating, 
+            Plot,
+            Poster,
+            Runtime,
+            Title,
+        } = movie
         return (
             <div
                 key={movie.imdbID}
                 className="movie-container"
             >
-                <MovieElement movie={movie} />
+                <MovieElement 
+                        Genre={Genre}
+                        imdbID={imdbID}
+                        imdbRating={imdbRating} 
+                        Plot={Plot}
+                        Poster={Poster}
+                        Runtime={Runtime}
+                        Title={Title}
+                />
             </div>
         )
     }) : null
