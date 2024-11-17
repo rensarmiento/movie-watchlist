@@ -8,7 +8,7 @@ export default function Home() {
         <Image
           src='/Icon.png'
           height={90}
-          width={80}
+          width={90}
           alt='film icon'
         />
         <h1>Welcome to Movie Watchlist!</h1>

@@ -43,7 +43,12 @@ a {
 .navbar > a {
   font-weight: 600;
   font-size: 1.5rem;
+}
 
+.navbar > a:hover {
+  transform: scale(1.1);
+  transform-origin: center;
+  text-decoration: underline #000;
 }
 
 /* .homepage {
