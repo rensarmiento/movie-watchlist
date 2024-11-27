@@ -8,14 +8,17 @@ export default async function MoviesList({
     imdbList,
 }: {
     title? : string,
-    imdbList? : Partial<DetailedMovie>[]
+    imdbList? : Partial<DetailedMovie>[] | Partial<DetailedMovie>,
 }) {
     let movieList: Array<DetailedMovie> | undefined;
     if (title) {
         movieList = await fetchMovieList(title)
-    } else if(imdbList) {
+    } else if(Array.isArray(imdbList)) {
         movieList = await fetchDetailedMovieData(imdbList);
-    } else {
+    } else if(typeof imdbList === 'string') {
+        movieList = await fetchDetailedMovieData([imdbList])
+    }
+    else {
         return null
     }
     const movieElements = Array.isArray(movieList) ? movieList.map((movie:DetailedMovie) => {

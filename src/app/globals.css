@@ -58,6 +58,10 @@ a {
   justify-content: center;
 } */
 
+.main-content {
+  color: #fff;
+}
+
 .landingpage {
   display: flex;
   flex-direction: column;
@@ -263,5 +267,26 @@ a {
   .movie-container {
     grid-template-columns: 1fr;
     place-items: center;
+  }
+
+  .navbar > h1 {
+    font-weight: 800;
+    font-size: 2rem;
+    margin-right: auto;
+  }
+  
+  .navbar > a {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .searchbar-container {
+    width: 80%;
+    margin: auto;
+  }
+
+  .searchbar-button {
+    width: auto;
+    padding: .5rem;
   }
 }

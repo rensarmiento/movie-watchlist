@@ -8,13 +8,11 @@ export default async function WatchlistPage({searchParams} : {
     const { id } = await searchParams
   return id ? (
     <main className='main-content'>
-        <h1>My Watchlist!</h1>
         <MoviesList imdbList={id}/> 
     </main>
   )
   : (
     <main className='main-content'>
-      <h1>My Watchlist!</h1>
       <h3>Your watchlist is looking a little empty...</h3>
       <Link
         href='/search'

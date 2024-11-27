@@ -2,9 +2,11 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import { usePathname, useSearchParams, useRouter } from 'next/navigation'
 import { DetailedMovie, imdbID } from '@/app/lib/definitions'
 import { FaStar, FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import { useWatchlistContext } from '@/app/providers';
+
 
 export const MovieElement = ( { 
     Genre,
@@ -17,6 +19,9 @@ export const MovieElement = ( {
  } : Partial<DetailedMovie> ) => {
     const { list, setWatchList } = useWatchlistContext();
     const [isExpanded, setIsExpanded ] = useState(false)
+    const path = usePathname();
+    const searchParams = useSearchParams();
+    const { replace } = useRouter();
     const toggleReadMore = () => {
         setIsExpanded(!isExpanded)
      };
@@ -36,13 +41,16 @@ export const MovieElement = ( {
     // Watchlist Button function 
     const handleWatchlistButton = (movieID: imdbID) => {
         if (list.find(imdbId => (imdbId === movieID))) {
-            return setWatchList(prevWatchlist => (
-                prevWatchlist.filter(id => id !== movieID)
-            ))
+            // Find search params and remove from URL
+            setWatchList(prevWatchlist => (prevWatchlist.filter(id => id !== movieID)))
+            if (path === '/watchlist') {
+                console.log(`Removing ${movieID} from path.`)
+                const params = new URLSearchParams(searchParams)
+                params.delete('id', movieID)
+                replace(`${path}?${params}`)
+            }
         } else {
-            return setWatchList(prevWatchlist => {
-                return [...prevWatchlist, movieID]
-            })
+            setWatchList(prevWatchlist => ([...prevWatchlist, movieID]))
         }   
     }
 

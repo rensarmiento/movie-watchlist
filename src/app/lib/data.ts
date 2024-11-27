@@ -22,7 +22,9 @@ export const fetchMovieList = async (title: string ) => {
 
   export const fetchDetailedMovieData = async (movieData: Partial<DetailedMovie>[] | imdbList) => {
     try {
-      const requests = movieData.map(movie => (
+      console.log(movieData)
+      console.log(typeof movieData)
+      const requests = movieData?.map(movie => (
         fetch(`http://www.omdbapi.com/?apikey=${key}&i=${(typeof movie === 'string') ? movie : movie?.imdbID}&type=movie&plot=full`)
         .then(res => res.json())
       ))
