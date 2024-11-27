@@ -12,8 +12,8 @@ export default async function WatchlistPage({searchParams} : {
     </main>
   )
   : (
-    <main className='main-content'>
-      <h3>Your watchlist is looking a little empty...</h3>
+    <main className='main-content empty'>
+      <h3 className='header-empty'>Your watchlist is looking a little empty...</h3>
       <Link
         href='/search'
       >
